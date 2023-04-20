@@ -1,8 +1,22 @@
 {
   "mainnet": {
     "SimpleUniRecipe": {
-      "address": "0xac0fE9F363c160c281c81DdC49d0AA8cE04C02Eb",
-      "startBlock": 14860647
+      "address": "0xac0fE9F363c160c281c81DdC49d0AA8cE04C02Eb"
+    },
+    "SimpleUniRecipeV2": {
+      "address": "0x600e353fa3414abdd08b5f20b20b4cd701823b9b"
+    },
+    "gaugeController": {
+      "address": "0x840e75261c2934f33C8766F6eA6235330DC1D72d"
+    },
+    "VotingEscrow": {
+      "address": "0x8Bf70DFE40F07a5ab715F7e888478d9D3680a2B6"
+    },
+    "bdbaoUSD": {
+      "address": "0xc0601094C0C88264Ba285fEf0a1b00eF13e79347"
+    },
+    "veBAO": {
+      "address": "0x8bf70dfe40f07a5ab715f7e888478d9d3680a2b6"
     }
   }
 }

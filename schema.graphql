@@ -1,8 +1,23 @@
-type OwnershipTransferred @entity(immutable: true) {
-  id: Bytes!
-  previousOwner: Bytes! # address
-  newOwner: Bytes! # address
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
+type Gauge @entity {
+  id: ID!
+  weights: [GaugeWeight!]!
+}
+
+type GaugeWeight @entity {
+  id: ID!
+  weight: BigInt!
+  timestamp: BigInt!
+}
+
+type Basket @entity {
+  id: ID!
+  tokens: [BasketToken!]!
+  createdAt: BigInt!
+  owner: Bytes!
+}
+
+type BasketToken @entity {
+  id: ID!
+  token: Token!
+  baskets: [Basket!]!
 }

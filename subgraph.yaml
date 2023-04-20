@@ -1,4 +1,5 @@
 specVersion: 0.0.5
+description: BAO Finance's Ethereum App
 schema:
   file: ./schema.graphql
 dataSources:
@@ -8,7 +9,6 @@ dataSources:
     source:
       address: "0xac0fE9F363c160c281c81DdC49d0AA8cE04C02Eb"
       abi: SimpleUniRecipe
-      startBlock: 14860647
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -22,3 +22,192 @@ dataSources:
         - event: OwnershipTransferred(indexed address,indexed address)
           handler: handleOwnershipTransferred
       file: ./src/simple-uni-recipe.ts
+  - kind: ethereum
+    name: SimpleUniRecipeV2
+    network: mainnet
+    source:
+      address: "0x600e353fa3414abdd08b5f20b20b4cd701823b9b"
+      abi: SimpleUniRecipeV2
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - SimpleUniRecipeV2OwnershipTransferred
+      abis:
+        - name: SimpleUniRecipeV2
+          file: ./abis/SimpleUniRecipeV2.json
+      eventHandlers:
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+      file: ./src/simple-uni-recipe-v-2.ts
+  - kind: ethereum
+    name: Contract
+    network: mainnet
+    source:
+      address: "0x840e75261c2934f33C8766F6eA6235330DC1D72d"
+      abi: Contract
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - CommitOwnership
+        - ApplyOwnership
+        - AddType
+        - NewTypeWeight
+        - NewGaugeWeight
+        - VoteForGauge
+        - NewGauge
+      abis:
+        - name: Contract
+          file: ./abis/Contract.json
+      eventHandlers:
+        - event: CommitOwnership(address)
+          handler: handleCommitOwnership
+        - event: ApplyOwnership(address)
+          handler: handleApplyOwnership
+        - event: AddType(string,int128)
+          handler: handleAddType
+        - event: NewTypeWeight(int128,uint256,uint256,uint256)
+          handler: handleNewTypeWeight
+        - event: NewGaugeWeight(address,uint256,uint256,uint256)
+          handler: handleNewGaugeWeight
+        - event: VoteForGauge(uint256,address,address,uint256)
+          handler: handleVoteForGauge
+        - event: NewGauge(address,int128,uint256)
+          handler: handleNewGauge
+      file: ./src/contract.ts
+  - kind: ethereum
+    name: VotingEscrow
+    network: mainnet
+    source:
+      address: "0x8Bf70DFE40F07a5ab715F7e888478d9D3680a2B6"
+      abi: VotingEscrow
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - VotingEscrowCommitOwnership
+        - VotingEscrowApplyOwnership
+        - Deposit
+        - Withdraw
+        - Supply
+      abis:
+        - name: VotingEscrow
+          file: ./abis/VotingEscrow.json
+      eventHandlers:
+        - event: CommitOwnership(address)
+          handler: handleCommitOwnership
+        - event: ApplyOwnership(address)
+          handler: handleApplyOwnership
+        - event: Deposit(indexed address,uint256,indexed uint256,int128,uint256)
+          handler: handleDeposit
+        - event: Withdraw(indexed address,uint256,uint256)
+          handler: handleWithdraw
+        - event: Supply(uint256,uint256)
+          handler: handleSupply
+      file: ./src/voting-escrow.ts
+  - kind: ethereum
+    name: bdbaoUSD
+    network: mainnet
+    source:
+      address: "0xc0601094C0C88264Ba285fEf0a1b00eF13e79347"
+      abi: bdbaoUSD
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - AccrueInterest
+        - Approval
+        - Borrow
+        - Failure
+        - LiquidateBorrow
+        - Mint
+        - NewAdmin
+        - NewComptroller
+        - NewImplementation
+        - NewMarketInterestRateModel
+        - NewPendingAdmin
+        - NewProtocolSeizeShare
+        - NewReserveFactor
+        - Redeem
+        - RepayBorrow
+        - ReservesAdded
+        - ReservesReduced
+        - Transfer
+      abis:
+        - name: bdbaoUSD
+          file: ./abis/bdbaoUSD.json
+      eventHandlers:
+        - event: AccrueInterest(uint256,uint256,uint256,uint256)
+          handler: handleAccrueInterest
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: Borrow(address,uint256,uint256,uint256)
+          handler: handleBorrow
+        - event: Failure(uint256,uint256,uint256)
+          handler: handleFailure
+        - event: LiquidateBorrow(address,address,uint256,address,uint256)
+          handler: handleLiquidateBorrow
+        - event: Mint(address,uint256,uint256)
+          handler: handleMint
+        - event: NewAdmin(address,address)
+          handler: handleNewAdmin
+        - event: NewComptroller(address,address)
+          handler: handleNewComptroller
+        - event: NewImplementation(address,address)
+          handler: handleNewImplementation
+        - event: NewMarketInterestRateModel(address,address)
+          handler: handleNewMarketInterestRateModel
+        - event: NewPendingAdmin(address,address)
+          handler: handleNewPendingAdmin
+        - event: NewProtocolSeizeShare(uint256,uint256)
+          handler: handleNewProtocolSeizeShare
+        - event: NewReserveFactor(uint256,uint256)
+          handler: handleNewReserveFactor
+        - event: Redeem(address,uint256,uint256)
+          handler: handleRedeem
+        - event: RepayBorrow(address,address,uint256,uint256,uint256)
+          handler: handleRepayBorrow
+        - event: ReservesAdded(address,uint256,uint256)
+          handler: handleReservesAdded
+        - event: ReservesReduced(address,uint256,uint256)
+          handler: handleReservesReduced
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/bdbao-usd.ts
+  - kind: ethereum
+    name: veBAO
+    network: mainnet
+    source:
+      address: "0x8bf70dfe40f07a5ab715f7e888478d9d3680a2b6"
+      abi: veBAO
+      startBlock: 16007439
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - veBAOCommitOwnership
+        - veBAOApplyOwnership
+        - veBAODeposit
+        - veBAOWithdraw
+        - veBAOSupply
+      abis:
+        - name: veBAO
+          file: ./abis/veBAO.json
+      eventHandlers:
+        - event: CommitOwnership(address)
+          handler: handleCommitOwnership
+        - event: ApplyOwnership(address)
+          handler: handleApplyOwnership
+        - event: Deposit(indexed address,uint256,indexed uint256,int128,uint256)
+          handler: handleDeposit
+        - event: Withdraw(indexed address,uint256,uint256)
+          handler: handleWithdraw
+        - event: Supply(uint256,uint256)
+          handler: handleSupply
+      file: ./src/ve-bao.ts
